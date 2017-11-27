@@ -1,5 +1,6 @@
+import { ANIMALES } from './../../data/data.animales';
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { Animal } from "../../interfaces/animal.interface";
 
 @Component({
   selector: 'page-home',
@@ -7,8 +8,10 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  animales:Animal[] = [];
 
+  constructor() {
+    this.animales = ANIMALES.splice(0);
   }
 
 }
