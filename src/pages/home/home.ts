@@ -1,6 +1,7 @@
 import { ANIMALES } from './../../data/data.animales';
 import { Component } from '@angular/core';
 import { Animal } from "../../interfaces/animal.interface";
+import { Refresher } from "ionic-angular";
 
 @Component({
   selector: 'page-home',
@@ -13,7 +14,7 @@ export class HomePage {
   audioTiempo: any;
 
   constructor() {
-    this.animales = ANIMALES.splice(0);
+    this.animales = ANIMALES.slice(0);
   }
 
   reproducir( animal:Animal ) {
@@ -47,8 +48,17 @@ export class HomePage {
     }
   }
 
-  borrar_animal( idx:number ) {
-    this.animales.splice( idx, 1 );
-  }
+    borrar_animal( idx:number ) {
+        this.animales.splice( idx, 1 );
+    }
+
+    recargar_animales( refresher:Refresher ) {
+    
+        setTimeout( () => {
+            this.animales = ANIMALES.slice(0);
+
+            refresher.complete();
+        }, 1500);
+    }
 
 }
